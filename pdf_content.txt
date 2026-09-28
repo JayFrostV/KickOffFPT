@@ -1,0 +1,707 @@
+=== Page 1/21 ===
+SOFTWARE REQUIREMENT SPECIFICATION
+Quiz Application (ANG.M.A001.Opt1)
+Group 4
+– Hanoi, Oct 2025 –
+=== Page 2/21 ===
+Table of Contents
+I. Record of Changes ............................................................................................................................... 1
+II. Software Requirement Specification .................................................................................................. 2
+1. Overall Requirements ..................................................................................................................... 2
+1.1 Context Diagram ....................................................................................................................... 2
+1.2 Main Business Processes ........................................................................................................... 3
+1.3 User Requirements ................................................................................................................... 4
+1.4 Database Analysis and Design ................................................................................................... 7
+2. Use Case Specifications ................................................................................................................. 11
+2.1 UC01 – View Quiz List ............................................................................................................. 11
+2.2 UC02 – View Quiz Details ........................................................................................................ 12
+2.3 UC03 – Create Quiz ................................................................................................................. 12
+2.4 UC04 – Update Quiz ................................................................................................................ 13
+2.5 UC05 – Delete Quiz ................................................................................................................. 14
+2.6 UC06 – Manage Questions ...................................................................................................... 14
+2.7 UC07 – Manage Answers ........................................................................................................ 15
+2.8 UC08 – View Available Quizzes ............................................................................................... 16
+2.9 UC09 – View Quiz Details ........................................................................................................ 17
+2.10 UC10 – Take Quiz .................................................................................................................. 18
+ANG.M.A001.Opt1 - SRS Document Page 1
+=== Page 3/21 ===
+I. Record of Changes
+Date A* In charge Change Description
+M, D
+*A - Added M - Modified D - Deleted
+ANG.M.A001.Opt1 - SRS Document Page 1
+=== Page 4/21 ===
+II. Software Requirement Specification
+1. Overall Requirements
+1.1 Context Diagram
+The Quiz Application is an internal training assessment system designed to support knowledge
+assessment activities within a corporate training environment.
+The system enables Trainers to create and manage quizzes, including their questions and answers.
+Trainees can access available quizzes, answer the questions, and submit their responses for
+assessment.
+The initial release focuses on quiz management and quiz participation. Advanced training
+management capabilities, such as assigning quizzes to individual Trainees, maintaining assessment
+history, reporting, and analytics, are outside the scope of this release.
+Figure 1. Quiz Application Context Diagram
+The context diagram illustrates the system boundary and the interactions between the Quiz
+Application and its external actors. Trainers provide and maintain quiz-related information, while
+Trainees access available quizzes and submit their answers through the system.
+ANG.M.A001.Opt1 - SRS Document Page 2
+=== Page 5/21 ===
+1.2 Main Business Processes
+The Quiz Application supports two main business processes: Quiz Management and Quiz Participation.
+The Quiz Management process enables Trainers to maintain the quiz content used for internal training
+assessments. The Quiz Participation process enables Trainees to access available quizzes, answer
+questions, and submit their responses.
+These processes represent the primary interactions between the system and its users within the scope
+of the initial release.
+1.2.1 Quiz Management Process
+The Quiz Management process enables a Trainer to create and maintain quizzes used for training
+assessments. A quiz consists of general quiz information, questions, and their corresponding answers.
+The process begins when the Trainer accesses quiz management and selects an appropriate
+management action. Depending on the selected action, the Trainer can create a new quiz, modify an
+existing quiz, or delete an existing quiz.
+When creating or updating a quiz, the Trainer provides or modifies the quiz information and manages
+its associated questions and answers. The system validates the provided data before applying the
+requested changes. The relationship between a quiz, its questions, and their answers must remain
+consistent throughout the operation.
+If the provided data is valid, the system applies the changes and informs the Trainer that the operation
+has been completed successfully. If the data is invalid or the requested quiz cannot be found, the
+system rejects the operation and provides an appropriate error response.
+Figure 2. Quiz Management Business Process
+1.2.2 Quiz Participation Process
+The Quiz Participation process enables a Trainee to participate in an available quiz as part of an internal
+training assessment.
+The process begins when the Trainee accesses the available quizzes and selects a quiz to participate
+in. The system retrieves and presents the selected quiz together with its questions and the information
+required for the Trainee to complete the quiz.
+ANG.M.A001.Opt1 - SRS Document Page 3
+=== Page 6/21 ===
+The Trainee provides answers to the quiz questions and submits the completed quiz. The system
+validates the submitted information to ensure that the submission can be processed.
+If the submission is valid, the system accepts the Trainee's responses and confirms that the quiz has
+been submitted successfully. If the submission is invalid, the system rejects the submission and
+provides an appropriate error response so that the Trainee can correct the relevant information when
+applicable.
+The initial release does not include quiz assignment to individual Trainees, assessment history,
+reporting, or analytics.
+Figure 3. Quiz Participation Business Process
+1.3 User Requirements
+This section identifies the actors that interact with the Quiz Application and the use cases that
+represent their primary interactions with the system.
+1.3.1 Actors
+The Quiz Application has two primary actors: Trainer and Trainee.
+No. Actor Description
+1 Trainer A person responsible for preparing and maintaining quiz content for internal
+training assessments. The Trainer manages quizzes and their associated questions
+and answers.
+2 Trainee A person participating in the company's training activities. The Trainee accesses
+available quizzes, answers quiz questions, and submits completed quizzes for
+assessment.
+1.3.2 Use Cases (UC)
+The following use cases describe the primary interactions between the actors and the Quiz Application
+within the scope of the initial release.
+ANG.M.A001.Opt1 - SRS Document Page 4
+=== Page 7/21 ===
+ID Use Case Feature Use Case Description
+UC01 View Quiz List Quiz Trainer views the list of existing quizzes available in
+Management the system.
+UC02 View Quiz Quiz Trainer views the details of a selected quiz, including
+Details Management its questions and answers.
+UC03 Create Quiz Quiz Trainer creates a new quiz with the required quiz
+Management information.
+UC04 Update Quiz Quiz Trainer modifies the information of an existing quiz.
+Management
+UC05 Delete Quiz Quiz Trainer removes an existing quiz from the system.
+Management
+UC06 Manage Question Trainer adds, updates, or removes questions
+Questions Management associated with a quiz.
+UC07 Manage Answer Trainer adds, updates, or removes answers associated
+Answers Management with a question and identifies the correct answer
+where applicable.
+UC08 View Available Quiz Trainee views quizzes that are available for
+Quizzes Participation participation.
+UC09 View Quiz Quiz Trainee views the information of a selected quiz
+Details Participation before starting the quiz.
+UC10 Take Quiz Quiz Trainee participates in a selected quiz by answering
+Participation its questions and submitting the completed responses
+to the system.
+1.3.3 Use Case Diagrams
+The following use case diagrams illustrate the interactions between the primary actors and the Quiz
+Application. Separate diagrams are provided for the Trainer and Trainee to clearly represent the
+responsibilities and system capabilities available to each actor.
+1.3.3.1 Use Cases for Trainer
+The Trainer is responsible for preparing and maintaining quiz content used in internal training
+assessments. The Trainer can view existing quizzes, create new quizzes, update or delete existing
+quizzes, and manage the questions and answers associated with each quiz.
+The Trainer interacts with the following use cases:
+• UC01 – View Quiz List
+• UC02 – View Quiz Details
+• UC03 – Create Quiz
+• UC04 – Update Quiz
+ANG.M.A001.Opt1 - SRS Document Page 5
+=== Page 8/21 ===
+• UC05 – Delete Quiz
+• UC06 – Manage Questions
+• UC07 – Manage Answers
+Figure 4. Trainer Use Case Diagram
+1.3.3.2 Use Cases for Trainee
+The Trainee participates in quizzes provided as part of the company's internal training activities. The
+Trainee can view available quizzes, review the general information of a selected quiz, and take the quiz
+by answering its questions and submitting the completed responses.
+The Trainee interacts with the following use cases:
+• UC08 – View Available Quizzes
+• UC09 – View Quiz Details
+• UC10 – Take Quiz
+Figure 5. Trainee Use Case Diagram
+ANG.M.A001.Opt1 - SRS Document Page 6
+=== Page 9/21 ===
+1.4 Database Analysis and Design
+The database of the Quiz Application is designed to support the two main business areas defined
+within the current system scope: Quiz Management and Quiz Participation.
+The database maintains the structure and content of quizzes, including quiz information, questions,
+and predefined answers. It also provides the basic data structure required to represent quiz
+submissions and the responses submitted for individual questions during quiz participation.
+The database design focuses only on the data required by the current system scope. Advanced training
+management features such as user authentication, quiz assignment, scoring, assessment history,
+reporting, and analytics are not included in the current database design.
+1.4.1 Database Analysis
+Based on the business processes and use cases defined in the previous sections, the data requirements
+of the Quiz Application are divided into two main areas: Quiz Management Data and Quiz Participation
+Data.
+Quiz Management Data
+The Quiz Management process requires the system to maintain the structure and content of each quiz.
+A Quiz stores the general information required to describe an assessment. Each Quiz may contain
+multiple Questions, while each Question belongs to one Quiz.
+A Question stores the content of an assessment item and its question type. The question type
+determines how the question is presented and answered. The supported question types are:
+• Multiple Choice
+• Single Choice
+• True/False
+• Fill in the Blanks
+• Short Answer
+• Long Answer
+Depending on its question type, a Question may contain multiple predefined Answers. An Answer
+stores the answer content and indicates whether the answer is considered correct where applicable.
+The relationships between Quiz, Question, and Answer must remain consistent when quiz content is
+created, updated, or deleted.
+* Quiz Participation Data
+The Quiz Participation process requires the system to represent a completed quiz submission and the
+responses provided for individual questions.
+A QuizSubmission represents a submitted attempt for a specific Quiz. Each Quiz may be associated
+with multiple QuizSubmissions, while each QuizSubmission belongs to one Quiz.
+A SubmissionAnswer represents a response provided for an individual Question within a
+QuizSubmission. Each SubmissionAnswer belongs to one QuizSubmission and refers to one Question.
+ANG.M.A001.Opt1 - SRS Document Page 7
+=== Page 10/21 ===
+Depending on the question type, a SubmissionAnswer may reference a predefined Answer or store a
+textual response. This structure allows the system to represent responses for both predefined-answer
+questions and text-based questions without introducing scoring or assessment-history functionality.
+Based on these data requirements, the following five main entities are identified:
+# Entity Purpose
+1 Quiz Represents the general information of a quiz used for internal training
+assessment.
+2 Question Represents a question belonging to a quiz and identifies its question type.
+3 Answer Represents a predefined answer associated with a question.
+4 QuizSubmission Represents a submitted attempt for a quiz during quiz participation.
+5 SubmissionAnswer Represents a response provided for an individual question within a quiz
+submission.
+The main relationships among the identified entities are as follows:
+• One Quiz may contain zero or more Questions, while each Question belongs to one Quiz.
+• One Question may contain zero or more predefined Answers, while each Answer belongs to
+one Question.
+• One Quiz may be associated with zero or more QuizSubmissions, while each QuizSubmission
+belongs to one Quiz.
+• One QuizSubmission may contain multiple SubmissionAnswers, while each SubmissionAnswer
+belongs to one QuizSubmission.
+• One Question may be referenced by multiple SubmissionAnswers, while each
+SubmissionAnswer refers to one Question.
+1.4.2 Entity Relationship Diagram
+The Entity Relationship Diagram (ERD) illustrates the logical structure of the Quiz Application
+database and the relationships among the entities identified during database analysis.
+The Quiz, Question, and Answer entities form the core structure used to manage quiz content. The
+QuizSubmission and SubmissionAnswer entities extend the data model to support basic quiz
+participation and submission.
+Primary keys are used to uniquely identify individual records, while foreign keys are used to establish
+relationships between related entities and maintain referential integrity.
+The ERD uses Crow's Foot notation to represent the cardinality of the relationships among the
+entities.
+ANG.M.A001.Opt1 - SRS Document Page 8
+=== Page 11/21 ===
+Figure 6. Quiz Application Entity Relationship Diagram
+* Entities Description
+# Entity Description
+1 Quiz Stores the general information of a quiz used for internal training
+assessment.
+2 Question Stores the questions associated with a quiz and identifies the type of
+each question.
+3 Answer Stores the predefined answers associated with a question and identifies
+the correct answer where applicable.
+4 QuizSubmission Stores information about a submitted attempt for a quiz during quiz
+participation.
+5 SubmissionAnswer Stores the response provided for an individual question within a quiz
+submission.
+1.4.3 Database Table Design
+The following tables define the logical database structure derived from the entities and relationships
+identified above. Each table specifies the required attributes, data types, constraints, and purpose of
+the stored data.
+* Quiz
+The Quiz table stores the general information of each quiz.
+Column Data Type Constraints Description
+quiz_id INT PK, Auto Increment Unique identifier of the quiz.
+title VARCHAR(255) NOT NULL Title of the quiz.
+ANG.M.A001.Opt1 - SRS Document Page 9
+=== Page 12/21 ===
+Column Data Type Constraints Description
+description TEXT NULL Description of the quiz.
+duration INT NOT NULL Duration of the quiz in minutes.
+* Question
+The Question table stores the questions associated with quizzes.
+Column Data Type Constraints Description
+question_id INT PK, Auto Unique identifier of the question.
+Increment
+quiz_id INT FK, NOT NULL References the Quiz containing the
+question.
+content TEXT NOT NULL Content of the question.
+question_type VARCHAR(50) NOT NULL Type of the question.
+* Answer
+The Answer table stores predefined answers associated with questions.
+Column Data Constraints Description
+Type
+answer_id INT PK, Auto Increment Unique identifier of the predefined answer.
+question_id INT FK, NOT NULL References the Question associated with the
+answer.
+content TEXT NOT NULL Content of the predefined answer.
+is_correct BOOLEAN NOT NULL Indicates whether the answer is considered
+correct.
+* QuizSubmission
+The QuizSubmission table stores information representing a submitted attempt for a quiz.
+Column Data Type Constraints Description
+submission_id INT PK, Auto Unique identifier of the quiz submission.
+Increment
+quiz_id INT FK, NOT NULL References the Quiz associated with the
+submission.
+submitted_at DATETIME NOT NULL Date and time when the quiz was submitted.
+ANG.M.A001.Opt1 - SRS Document Page 10
+=== Page 13/21 ===
+* SubmissionAnswer
+The SubmissionAnswer table stores responses provided for individual questions within a quiz
+submission.
+Column Data Constraints Description
+Type
+submission_answer_id INT PK, Auto Unique identifier of the submitted answer.
+Increment
+submission_id INT FK, NOT NULL References the QuizSubmission containing
+the response.
+question_id INT FK, NOT NULL References the Question being answered.
+answer_id INT FK, NULL References a predefined Answer when
+applicable.
+response_text TEXT NULL Stores a textual response when applicable.
+2. Use Case Specifications
+2.1 UC01 – View Quiz List
+Item Specification
+Use Case ID UC01
+Use Case Name View Quiz List
+Primary Actor Trainer
+Secondary Actor None
+Description As a Trainer, I want to view the existing quizzes so that I can review
+and manage the quiz content available in the system.
+Preconditions The Trainer can access the Quiz Management function.
+Postconditions The list of existing quizzes is presented to the Trainer. No quiz data is
+modified.
+Normal Flow 1. The Trainer accesses the Quiz Management function.
+2. The system retrieves the available quiz data.
+3. The system displays the quiz list.
+4. The Trainer views the displayed quiz list.
+Alternative Flow At Step 2:
+1. The system determines that no quizzes are currently available.
+A1 – No quizzes are
+2. The system displays an empty quiz list with an appropriate
+available
+informational message.
+3. The use case ends.
+Alternative Flow At Step 2:
+1. The system encounters an error while retrieving quiz data.
+A2 – Quiz data cannot be
+2. The system does not display incomplete or invalid quiz information.
+retrieved
+ANG.M.A001.Opt1 - SRS Document Page 11
+=== Page 14/21 ===
+3. The system displays an appropriate error message to the Trainer.
+4. The use case ends.
+2.2 UC02 – View Quiz Details
+Item Specification
+Use Case ID UC02
+Use Case Name View Quiz Details
+Primary Actor Trainer
+Secondary Actor None
+Description As a Trainer, I want to view the details of a selected quiz so that I can
+review its information, questions, and answers before managing its
+content.
+Preconditions The Trainer can access the Quiz Management function.
+Postconditions The selected quiz information is presented to the Trainer. No quiz data
+is modified.
+Normal Flow 1. The Trainer views the quiz list.
+2. The Trainer selects a quiz to view.
+3. The system retrieves the selected quiz and its associated questions
+and answers.
+4. The system displays the quiz details to the Trainer.
+5. The Trainer reviews the displayed information.
+Alternative Flow At Step 3:
+1. The system cannot find the selected quiz.
+A1 – Quiz not found
+2. The system displays an appropriate error message.
+3. The use case ends.
+Alternative Flow At Step 3:
+1. The system encounters an error while retrieving the quiz data.
+A2 – Quiz data cannot
+2. The system displays an appropriate error message.
+be retrieved
+3. The use case ends.
+2.3 UC03 – Create Quiz
+Item Specification
+Use Case ID UC03
+Use Case Name Create Quiz
+Primary Actor Trainer
+Secondary Actor None
+Description As a Trainer, I want to create a new quiz so that I can prepare quiz
+content for internal training assessments.
+Preconditions The Trainer can access the Quiz Management function.
+Postconditions A new quiz is created and stored in the system. The newly created quiz
+becomes available for further management.
+Normal Flow 1. The Trainer selects the function to create a new quiz.
+2. The system provides the required fields for quiz information.
+3. The Trainer provides the quiz title, description, and duration.
+4. The Trainer confirms the creation request.
+ANG.M.A001.Opt1 - SRS Document Page 12
+=== Page 15/21 ===
+5. The system validates the provided quiz data.
+6. The system creates the new quiz.
+7. The system confirms that the quiz has been created successfully.
+Alternative Flow At Step 5:
+1. The system detects missing or invalid quiz information.
+A1 – Invalid quiz data
+2. The system rejects the creation request.
+3. The system identifies the invalid information to the Trainer.
+4. The Trainer corrects the information.
+5. The flow resumes at Step 4.
+Alternative Flow At Step 6:
+1. The system encounters an error while creating the quiz.
+A2 – Quiz cannot be
+2. The quiz is not added to the system.
+created
+3. The system displays an appropriate error message.
+4. The use case ends.
+2.4 UC04 – Update Quiz
+Item Specification
+Use Case ID UC04
+Use Case Name Update Quiz
+Primary Actor Trainer
+Secondary Actor None
+Description As a Trainer, I want to update an existing quiz so that I can keep its
+information accurate and appropriate for the training assessment.
+Preconditions The Trainer can access the Quiz Management function.
+The Trainer has selected a quiz to update.
+Postconditions The selected quiz contains the updated information. Other quizzes remain
+unchanged.
+Normal Flow 1. The Trainer selects an existing quiz to update.
+2. The system retrieves and displays the current quiz information.
+3. The Trainer modifies the required quiz information.
+4. The Trainer confirms the update request.
+5. The system validates the modified data.
+6. The system applies the changes to the selected quiz.
+7. The system confirms that the quiz has been updated successfully.
+Alternative Flow At Step 2:
+1. The system cannot find the selected quiz.
+A1 – Quiz not found
+2. The system displays an appropriate error message.
+3. No quiz data is modified.
+4. The use case ends.
+Alternative Flow At Step 5:
+1. The system detects invalid quiz information.
+A2 – Invalid quiz data
+2. The system rejects the update request.
+3. The system identifies the invalid information to the Trainer.
+4. The Trainer corrects the information.
+5. The flow resumes at Step 4.
+Alternative Flow At Step 6:
+1. The system encounters an error while applying the changes.
+ANG.M.A001.Opt1 - SRS Document Page 13
+=== Page 16/21 ===
+Item Specification
+A3 – Quiz cannot be 2. The system does not apply an incomplete update.
+updated 3. The system displays an appropriate error message.
+4. The use case ends.
+2.5 UC05 – Delete Quiz
+Item Specification
+Use Case ID UC05
+Use Case Name Delete Quiz
+Primary Actor Trainer
+Secondary Actor None
+Description As a Trainer, I want to delete an existing quiz so that quiz content that is
+no longer required can be removed from the system.
+Preconditions The Trainer can access the Quiz Management function.
+The Trainer has selected a quiz to delete.
+Postconditions The selected quiz is removed from the system. Other quizzes remain
+unchanged.
+Normal Flow 1. The Trainer selects an existing quiz to delete.
+2. The system identifies the selected quiz.
+3. The system requests confirmation of the deletion.
+4. The Trainer confirms the deletion request.
+5. The system deletes the selected quiz.
+6. The system confirms that the quiz has been deleted successfully.
+Alternative Flow At Step 4:
+1. The Trainer cancels the deletion request.
+A1 – Trainer cancels
+2. The system does not modify the quiz data.
+deletion
+3. The use case ends.
+Alternative Flow At Step 2:
+1. The system cannot find the selected quiz.
+A2 – Quiz not found
+2. The system displays an appropriate error message.
+3. The use case ends.
+Alternative Flow At Step 5:
+1. The system encounters an error while deleting the quiz.
+A3 – Quiz cannot be
+2. The system displays an appropriate error message.
+deleted
+3. The use case ends.
+2.6 UC06 – Manage Questions
+Item Specification
+Use Case ID UC06
+Use Case Name Manage Questions
+Primary Actor Trainer
+Secondary Actor None
+Description As a Trainer, I want to manage the questions associated with a quiz so
+that the quiz contains appropriate content for the training assessment.
+ANG.M.A001.Opt1 - SRS Document Page 14
+=== Page 17/21 ===
+Item Specification
+Preconditions The Trainer can access the Quiz Management function.
+The Trainer has selected a quiz whose questions are to be managed.
+Postconditions The question list of the selected quiz reflects the successfully applied
+changes, while the relationship between the quiz and its questions
+remains consistent.
+Normal Flow 1. The Trainer selects a quiz whose questions are to be managed.
+2. The system retrieves the selected quiz and its associated questions.
+3. The system displays the current question information.
+4. The Trainer selects an action to add, update, or remove a question.
+5. For an add or update operation, the Trainer provides or modifies the
+question content and question type.
+6. The Trainer confirms the requested change.
+7. The system validates the question data and requested operation.
+8. The system applies the change to the selected quiz.
+9. The system confirms that the question information has been
+updated successfully.
+Alternative Flow At Step 2:
+1. The system cannot find the selected quiz.
+A1 – Quiz not found
+2. The system displays an appropriate error message.
+3. The use case ends.
+Alternative Flow At Step 7:
+1. The system detects missing or invalid question information.
+A2 – Invalid question
+2. The system rejects the requested change.
+data
+3. The system identifies the invalid information to the Trainer.
+4. The Trainer corrects the information.
+5. The flow resumes at Step 6.
+Alternative Flow At Step 6, for a remove operation:
+1. The Trainer cancels the removal request.
+A3 – Trainer cancels
+2. The system keeps the existing question information unchanged.
+question removal
+3. The use case ends.
+Alternative Flow At Step 8:
+1. The system encounters an error while applying the requested
+A4 – Question change
+change.
+cannot be applied
+2. The system does not leave the quiz-question relationship in an
+inconsistent state.
+3. The system displays an appropriate error message.
+4. The use case ends.
+2.7 UC07 – Manage Answers
+Item Specification
+Use Case ID UC07
+Use Case Name Manage Answers
+Primary Actor Trainer
+Secondary Actor None
+Description As a Trainer, I want to manage the answers associated with a question
+so that the question contains the answer information required for the
+training assessment.
+ANG.M.A001.Opt1 - SRS Document Page 15
+=== Page 18/21 ===
+Item Specification
+Preconditions The Trainer can access the Quiz Management function.
+The Trainer has selected a question whose answers are to be managed.
+Postconditions The answers associated with the selected question reflect the
+successfully applied changes, and the relationship between the
+question and its answers remains consistent.
+Normal Flow 1. The Trainer selects a question whose answers are to be managed.
+2. The system retrieves the selected question and its associated
+answers.
+3. The system displays the current answer information.
+4. The Trainer selects an action to add, update, or remove an answer.
+5. For an add or update operation, the Trainer provides or modifies the
+answer information and specifies whether the answer is correct where
+applicable.
+6. The Trainer confirms the requested change.
+7. The system validates the answer data and requested operation.
+8. The system applies the change to the selected question.
+9. The system confirms that the answer information has been updated
+successfully.
+Alternative Flow A1 – At Step 2:
+Question not found 1. The system cannot find the selected question.
+2. The system displays an appropriate error message.
+3. The use case ends.
+Alternative Flow At Step 7:
+1. The system detects missing or invalid answer information.
+A2 – Invalid answer data
+2. The system rejects the requested change.
+3. The system identifies the invalid information to the Trainer.
+4. The Trainer corrects the information.
+5. The flow resumes at Step 6.
+Alternative Flow At Step 6, for a remove operation:
+1. The Trainer cancels the removal request.
+A3 – Trainer cancels
+2. The system keeps the existing answer information unchanged.
+answer removal
+3. The use case ends.
+Alternative Flow At Step 8:
+1. The system encounters an error while applying the requested
+A4 – Answer change
+change.
+cannot be applied
+2. The system does not leave the question-answer relationship in an
+inconsistent state.
+3. The system displays an appropriate error message.
+4. The use case ends.
+2.8 UC08 – View Available Quizzes
+Item Specification
+Use Case ID UC08
+Use Case Name View Available Quizzes
+Primary Actor Trainee
+Secondary Actor None
+ANG.M.A001.Opt1 - SRS Document Page 16
+=== Page 19/21 ===
+Item Specification
+Description As a Trainee, I want to view the available quizzes so that I can select a
+quiz to participate in as part of my training.
+Preconditions The Trainee can access the Quiz Participation function.
+Postconditions The available quizzes are presented to the Trainee. No quiz data is
+modified.
+Normal Flow 1. The Trainee accesses the Quiz Participation function.
+2. The system retrieves the quizzes available for participation.
+3. The system displays the available quiz list.
+4. The Trainee views the displayed quizzes.
+Alternative Flow At Step 2:
+1. The system determines that no quizzes are currently available for
+A1 – No quizzes are
+participation.
+available
+2. The system displays an empty quiz list with an appropriate
+informational message.
+3. The use case ends.
+Alternative Flow At Step 2:
+1. The system encounters an error while retrieving quiz data.
+A2 – Quiz data cannot be
+2. The system does not display incomplete or invalid quiz information.
+retrieved
+3. The system displays an appropriate error message to the Trainee.
+4. The use case ends.
+2.9 UC09 – View Quiz Details
+Item Specification
+Use Case ID UC09
+Use Case Name View Quiz Details
+Primary Actor Trainee
+Secondary Actor None
+Description As a Trainee, I want to view the general information of a selected
+quiz so that I can understand the assessment before deciding to start
+it.
+Preconditions The Trainee can access the Quiz Participation function.
+The Trainee has selected a quiz from the available quiz list.
+Postconditions The general information of the selected quiz is presented to the
+Trainee. No quiz data is modified.
+Normal Flow 1. The Trainee views the available quiz list.
+2. The Trainee selects a quiz to view.
+3. The system retrieves the selected quiz information.
+4. The system displays the quiz title, description, and duration to the
+Trainee.
+5. The Trainee reviews the displayed quiz information.
+Alternative Flow At Step 3:
+1. The system cannot find the selected quiz or determines that it is
+A1 – Quiz not found or
+no longer available for participation.
+unavailable
+2. The system displays an appropriate informational or error
+ANG.M.A001.Opt1 - SRS Document Page 17
+=== Page 20/21 ===
+Item Specification
+message.
+3. The use case ends.
+Alternative Flow At Step 3:
+1. The system encounters an error while retrieving the selected quiz
+A2 – Quiz information
+information.
+cannot be retrieved
+2. The system displays an appropriate error message.
+3. The use case ends.
+2.10 UC10 – Take Quiz
+Item Specification
+Use Case ID UC10
+Use Case Name Take Quiz
+Primary Actor Trainee
+Secondary Actor None
+Description As a Trainee, I want to take an available quiz so that I can complete
+a knowledge assessment as part of my training.
+Preconditions The Trainee can access the Quiz Participation function.
+The Trainee has selected a quiz to start.
+Postconditions The Trainee's valid quiz responses are accepted by the system, and
+the quiz submission is completed successfully.
+Normal Flow 1. The Trainee selects an available quiz to start.
+2. The system retrieves the selected quiz and its questions.
+3. The system presents the quiz questions and appropriate answer
+inputs according to each question type.
+4. The Trainee provides answers to the quiz questions.
+5. The Trainee requests to submit the completed quiz.
+6. The system validates the submitted responses.
+7. The system accepts the valid quiz responses.
+8. The system confirms that the quiz has been submitted
+successfully.
+9. The use case ends.
+Alternative Flow At Step 2:
+1. The system cannot find the selected quiz or determines that the
+A1 – Quiz not found or
+quiz is no longer available.
+unavailable
+2. The system does not start the quiz.
+3. The system displays an appropriate informational or error
+message.
+4. The use case ends.
+Alternative Flow At Step 2:
+1. The system encounters an error while retrieving the quiz content.
+A2 – Quiz content cannot
+2. The system does not present incomplete quiz content to the
+be retrieved
+Trainee.
+3. The system displays an appropriate error message.
+4. The use case ends.
+Alternative Flow At Step 6:
+1. The system detects invalid or inconsistent response data.
+ANG.M.A001.Opt1 - SRS Document Page 18
+=== Page 21/21 ===
+A3 – Invalid submission 2. The system rejects the submission.
+data 3. The system informs the Trainee that the submitted responses
+cannot be accepted.
+4. The Trainee corrects the applicable responses when possible.
+5. The flow resumes at Step 5.
+Alternative Flow At Step 7:
+1. The system encounters an error while processing the submission.
+A4 – Submission cannot be
+2. The system does not report the quiz as successfully submitted.
+processed
+3. The system displays an appropriate error message.
+4. The use case ends.
+ANG.M.A001.Opt1 - SRS Document Page 19

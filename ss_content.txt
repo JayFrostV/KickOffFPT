@@ -1,0 +1,529 @@
+=== Page 1/22 ===
+SOFTWARE REQUIREMENT SPECIFICATION
+Project Name (Code)
+– Hanoi, Oct 2025 –
+=== Page 2/22 ===
+Table of Contents
+I. Record of Changes ...........................................................................................................................3
+II. Software Requirement Specification ...............................................................................................4
+1. Overall Requirements .................................................................................................................4
+1.1 Context Diagram ...................................................................................................................4
+1.2 Main Business Processes .......................................................................................................5
+1.3 User Requirements ...............................................................................................................7
+1.4 Entity Relationship Diagram ................................................................................................ 11
+2. Use Case Specifications ............................................................................................................. 13
+2.1 Authentication .................................................................................................................... 13
+2.2 Quiz Discovery and Participation ......................................................................................... 14
+2.3 Quiz Management .............................................................................................................. 17
+2.4 Question Bank..................................................................................................................... 19
+2.5 System Administration ........................................................................................................ 21
+QuizApplication- SRS Document Page 2/18
+=== Page 3/22 ===
+I. Record of Changes
+Date A* In charge Change Description
+M, D
+*A - Added M - Modified D - Deleted
+QuizApplication- SRS Document Page 3/18
+=== Page 4/22 ===
+II. Software Requirement Specification
+1. Overall Requirements
+1.1 Context Diagram
+Quiz Application is a system that allows users to discover, create, manage, and participate in quizzes.
+Users can create their own quizzes and questions, maintain a personal question bank, reuse public
+questions, and publish quizzes for other users to access.
+The system supports three main actors: Guest, User, and Administrator. Guests can browse public
+quizzes and try a limited number of trial quizzes. Registered users can participate in quizzes, create
+and manage their own quizzes and question banks. Administrators are responsible for managing users,
+quizzes, questions, and inappropriate content within the system.
+QuizApplication- SRS Document Page 4/18
+=== Page 5/22 ===
+1.2 Main Business Processes
+The Quiz Application supports the main business processes of participating in quizzes, creating and
+publishing quizzes, and administering system content. Guests have limited access to trial quizzes,
+while registered users can fully participate in quizzes and create their own quiz content.
+1.2.1 Quiz Participation Process
+This process describes how a Guest or User searches for and participates in a public quiz. Guests
+can only access a limited number of trial quizzes. When the trial limit is reached, the Guest must
+register or log in to continue. Registered Users can participate in available public quizzes and view
+their results after submission.
+1.2.2 Quiz Creation and Publishing Process
+This process allows a registered User to create and manage a quiz. Questions can be created manually
+or selected from the Question Bank. After completing the quiz, the User can save it as private or
+publish it for other users.
+QuizApplication- SRS Document Page 5/18
+=== Page 6/22 ===
+1.2.3. Content Administration Process
+This process describes how an Administrator monitors and manages users and public content. The
+Administrator can review quizzes or questions and take appropriate action when inappropriate
+content is identified.
+QuizApplication- SRS Document Page 6/18
+=== Page 7/22 ===
+1.3 User Requirements
+1.3.1 Actors
+The Quiz Application has three main actors: Guest, User, and Administrator. Each actor has different
+permissions based on their authentication status and role in the system.
+# Actor Description
+An unauthenticated visitor who can browse and search public quizzes,
+1 Guest view quiz information, and try a limited number of trial quizzes. A Guest
+must register or log in to access additional features.
+A registered and authenticated user who can participate in public
+2 User quizzes, view results, create and manage their own quizzes, manage
+questions in their Question Bank, and publish quizzes for other users.
+An authenticated user with administrative privileges who manages users
+and system content. The Administrator can review and manage quizzes
+3 Administrator
+and questions, moderate inappropriate content, and maintain the overall
+system.
+QuizApplication- SRS Document Page 7/18
+=== Page 8/22 ===
+1.3.2 Use Cases (UC)
+The following use cases describe the main interactions between the actors and the Quiz Application.
+ID Use Case Feature Use Case Description
+Register Guest creates a new user account to access the full
+UC01 Authentication
+Account features of the system.
+Guest or registered user authenticates with the
+UC02 Login Authentication
+system using valid credentials.
+Authenticated User or Administrator logs out of the
+UC03 Logout Authentication
+system.
+Browse Public Quiz Discovery & Guest or User views quizzes that have been
+UC04
+Quizzes Participation published for public access.
+Quiz Discovery & Guest or User searches for public quizzes using
+UC05 Search Quizzes
+Participation keywords or available search criteria.
+View Quiz Quiz Discovery & Guest or User views basic information about a
+UC06
+Details Participation selected public quiz before attempting it.
+Quiz Discovery & Guest attempts an available trial quiz subject to the
+UC07 Try Trial Quiz
+Participation Guest usage limitation.
+Quiz Discovery & Authenticated User participates in an available
+UC08 Take Quiz
+Participation public quiz and answers its questions.
+Quiz Discovery &
+UC09 Submit Quiz User submits completed answers for evaluation.
+Participation
+View Quiz Quiz Discovery &
+UC10 User views the result of a submitted quiz.
+Result Participation
+User creates a new quiz and provides its basic
+UC11 Create Quiz Quiz Management
+information.
+Manage Own User views, updates, or deletes quizzes that they
+UC12 Quiz Management
+Quiz created.
+Manage Quiz User adds, updates, removes, or arranges questions
+UC13 Quiz Management
+Questions and answers within their own quiz.
+User publishes their quiz for other users to discover
+UC14 Publish Quiz Quiz Management
+and participate in, or changes it back to private.
+Manage User creates, updates, deletes, and manages
+UC15 Question Bank
+Question Bank questions stored in their personal Question Bank.
+Search Public User searches for reusable questions that are
+UC16 Question Bank
+Questions available publicly in the Question Bank.
+Reuse User selects an existing question from the Question
+UC17 Question Bank
+Question Bank and adds it to their quiz.
+Administrator views and manages registered user
+UC18 Manage Users Administration
+accounts and their statuses.
+Manage Administrator reviews and manages quizzes
+UC19 Administration
+System Quizzes available in the system.
+Moderate Administrator reviews and takes action against
+UC20 Administration
+Content inappropriate quizzes or questions.
+QuizApplication- SRS Document Page 8/18
+=== Page 9/22 ===
+1.3.3 Use Case Diagrams
+The following diagrams illustrate the interactions between the main actors and the Quiz Application. The
+use cases are grouped by actor to provide a clear view of the functionalities available to each user role.
+1.3.2.1 UCs for Guest
+QuizApplication- SRS Document Page 9/18
+=== Page 10/22 ===
+1.3.2.2 UCs for User
+QuizApplication- SRS Document Page 10/18
+=== Page 11/22 ===
+1.3.2.3 UCs for Administrator
+1.4 Entity Relationship Diagram
+The Entity Relationship Diagram describes the main data entities and their relationships within the
+Quiz Application. In addition to quizzes, questions, and answers, the system provides Question Banks
+that allow users to organize, store, and reuse questions when creating quizzes.
+Questions stored in a Question Bank can be reused across multiple quizzes. The system also maintains
+quiz attempts and submitted answers to support quiz participation and result evaluation.
+QuizApplication- SRS Document Page 11/18
+=== Page 12/22 ===
+Entities Description
+# Entity Description
+Stores registered user information and roles. Users can create
+1 User
+quizzes, own Question Banks, and participate in quizzes.
+Stores and organizes reusable questions owned by a User. A
+2 QuestionBank Question Bank may be private or publicly accessible for question
+reuse.
+Stores quiz information such as title, description, duration,
+3 Quiz
+visibility, and creator.
+4 Question Stores question content and type. A question belongs to a
+Question Bank and can be reused in multiple quizzes.
+5 Answer Stores possible or expected answers associated with a Question
+and identifies correct answers when applicable.
+QuizApplication- SRS Document Page 12/18
+=== Page 13/22 ===
+6 QuizQuestion Associates Questions with Quizzes and maintains their order,
+enabling the same Question to be reused across multiple Quizzes.
+7 QuizAttempt Stores information about a User's attempt at a Quiz, including
+start time, submission time, and score.
+8 AttemptAnswer Stores answers submitted for individual Questions during a Quiz
+attempt.
+2. Use Case Specifications
+The following section provides detailed specifications for the main use cases of the Quiz Application.
+The use cases are grouped by major system features. Simple CRUD and data-viewing use cases are
+described in the Functional Requirements section.
+2.1 Authentication
+2.1.1 Register Account
+Item Description
+Use Case ID UC01
+Use Case Name Register Account
+Primary Actor Guest
+Secondary Actor None
+Description As a Guest, I want to create an account so that I can access the full
+features of the Quiz Application.
+Preconditions The Guest is not authenticated and does not have an active account
+using the same email/username.
+Postconditions A new User account is created successfully and can be used to log in to
+the system.
+Normal Sequence / 1. Guest selects Register.
+Flow 2. System displays the registration form.
+3. Guest enters required account information.
+4. Guest submits the registration form.
+5. System validates the entered information.
+6. System creates a new User account.
+7. System displays a successful registration message and redirects the
+Guest to Login.
+Alternative Sequences A1 – Required information is missing: System displays validation
+/ Flows messages and asks the Guest to complete the required fields.
+A2 – Email or username already exists: System rejects the registration
+and informs the Guest to use another email/username.
+A3 – Invalid input: System displays an appropriate validation message
+and does not create the account.
+QuizApplication- SRS Document Page 13/18
+=== Page 14/22 ===
+2.1.2 Login
+Item Description
+Use Case ID UC02
+Use Case Name Login
+Primary Actor Guest / User / Administrator
+Secondary Actor None
+Description As a registered user, I want to log in to the system so that I can access
+functions according to my role and permissions.
+Preconditions The user has a valid account in the system and is currently not
+authenticated.
+Postconditions The user is authenticated successfully and redirected to the appropriate
+system area based on the account role.
+Normal Sequence / 1. User selects Login.
+Flow 2. System displays the login form.
+3. User enters email/username and password.
+4. User submits the login request.
+5. System validates the credentials.
+6. System identifies the user's role.
+7. System creates an authenticated session.
+8. System redirects the user to the appropriate page.
+Alternative Sequences A1 – Required fields are empty: System displays validation messages.
+/ Flows A2 – Incorrect credentials: System denies access and displays an
+authentication error.
+A3 – Account is inactive or blocked: System denies login and informs the
+user of the account status.
+2.2 Quiz Discovery and Participation
+2.2.1 Try Trial Quiz
+Item Description
+Use Case ID UC07
+Use Case Name Try Trial Quiz
+Primary Actor Guest
+Secondary Actor None
+Description As a Guest, I want to try a limited public quiz so that I can experience the
+Quiz Application before creating an account.
+QuizApplication- SRS Document Page 14/18
+=== Page 15/22 ===
+Item Description
+Preconditions The Guest is not authenticated. The selected quiz is available for trial
+access.
+Postconditions The Guest completes or exits the trial quiz. The system records the trial
+usage for limitation control if applicable.
+Normal Sequence / 1. Guest browses or searches available public quizzes.
+Flow 2. Guest selects a trial-enabled quiz.
+3. System checks whether the Guest is still allowed to take a trial quiz.
+4. System displays the quiz questions.
+5. Guest answers the questions.
+6. Guest submits the quiz.
+7. System evaluates the submitted answers.
+8. System displays the trial result.
+Alternative Sequences A1 – Trial limit reached: System does not allow the Guest to continue
+/ Flows and requests registration or login.
+A2 – Quiz is no longer available: System informs the Guest that the quiz
+cannot be accessed.
+A3 – Guest exits before submission: The attempt is not evaluated and
+the Guest returns to the quiz list or details page.
+2.2.2 Take Quiz
+Item Description
+Use Case ID UC08
+Use Case Name Take Quiz
+Primary Actor User
+Secondary Actor None
+Description As a User, I want to participate in a public quiz so that I can answer
+questions and evaluate my knowledge.
+Preconditions The User is authenticated. The selected Quiz is available for participation.
+Postconditions A Quiz Attempt is created and the User's answers can be submitted for
+evaluation.
+Normal Sequence / 1. User browses or searches public quizzes.
+Flow 2. User selects a quiz.
+3. System displays quiz information.
+4. User selects Start Quiz.
+5. System creates a new Quiz Attempt and displays the quiz questions.
+6. User answers the questions.
+7. User reviews the entered answers if required.
+QuizApplication- SRS Document Page 15/18
+=== Page 16/22 ===
+Item Description
+8. User selects Submit Quiz.
+9. System continues to the Submit Quiz use case.
+Alternative Sequences A1 – Quiz is unavailable: System informs the User that the quiz cannot
+/ Flows be started.
+A2 – User exits before submission: System ends or temporarily leaves
+the current attempt according to the system policy.
+A3 – Quiz duration expires: System automatically ends the attempt and
+submits available answers if time limitation is enabled.
+2.2.3 Submit Quiz
+Item Description
+Use Case ID UC09
+Use Case Name Submit Quiz
+Primary Actor User
+Secondary Actor None
+Description As a User, I want to submit my quiz answers so that the system can
+evaluate my attempt and provide a result.
+Preconditions The User has an active Quiz Attempt and has started the selected Quiz.
+Postconditions The Quiz Attempt is marked as submitted. The submitted answers and
+calculated result are stored by the system.
+Normal Sequence / 1. User selects Submit Quiz.
+Flow 2. System receives the answers from the current Quiz Attempt.
+3. System validates the submitted data.
+4. System compares the submitted answers with the correct answers where
+automatic evaluation is supported.
+5. System calculates the quiz result.
+6. System stores the submitted answers and result.
+7. System marks the Quiz Attempt as completed.
+8. System displays the result to the User.
+Alternative A1 – Some questions are unanswered: System may warn the User before
+Sequences / Flows final submission and allow the User to return to the quiz.
+A2 – Submission data is invalid: System rejects the submission and displays
+an appropriate error message.
+A3 – Question type requires manual evaluation: System stores the
+submitted answer and marks the relevant question as pending evaluation
+rather than assigning an immediate final score.
+QuizApplication- SRS Document Page 16/18
+=== Page 17/22 ===
+2.3 Quiz Management
+2.3.1 Create Quiz
+Item Description
+Use Case ID UC11
+Use Case Name Create Quiz
+Primary Actor User
+Secondary Actor None
+Description As a User, I want to create a quiz so that I can organize questions and
+make the quiz available for my own use or for other users.
+Preconditions The User is authenticated and has permission to create quizzes.
+Postconditions A new Quiz is created and associated with the User as its creator. The Quiz
+is initially saved as private or draft until the User publishes it.
+Normal Sequence / 1. User selects Create Quiz.
+Flow 2. System displays the quiz creation form.
+3. User enters quiz information such as title, description, and duration.
+4. User adds questions manually or selects existing questions from a
+Question Bank.
+5. User reviews the quiz information and questions.
+6. User selects Save.
+7. System validates the quiz data.
+8. System creates the Quiz and associates it with the User.
+9. System confirms that the Quiz has been created successfully.
+Alternative A1 – Required information is missing: System displays validation
+Sequences / Flows messages and does not create the Quiz until the required information is
+provided.
+A2 – Invalid quiz information: System displays an appropriate error
+message and allows the User to correct the data.
+A3 – User cancels creation: System cancels the operation and no Quiz is
+created.
+2.3.2 Manage Quiz Questions
+Item Description
+Use Case ID UC13
+Use Case Name Manage Quiz Questions
+Primary Actor User
+Secondary Actor None
+QuizApplication- SRS Document Page 17/18
+=== Page 18/22 ===
+Item Description
+Description As a User, I want to manage questions and answers in my Quiz so that I can
+build and maintain appropriate quiz content.
+Preconditions The User is authenticated and is the owner of the selected Quiz.
+Postconditions The Quiz contains the updated set of questions and answers in the
+specified order.
+Normal Sequence / 1. User opens one of their Quizzes for editing.
+Flow 2. System displays the current Quiz questions.
+3. User chooses to add, edit, remove, or reorder a Question.
+4. When adding a Question, User can create a new Question or select an
+existing Question from a Question Bank.
+5. For a newly created Question, User enters the question content,
+question type, and appropriate answers.
+6. System validates the Question and Answer data.
+7. User saves the changes.
+8. System updates the Quiz and confirms the changes.
+Alternative A1 – Invalid Question or Answer data: System displays validation errors
+Sequences / Flows and does not save the invalid data.
+A2 – User selects a Question from Question Bank: System adds the
+selected Question to the Quiz without modifying the original Question.
+A3 – User removes a reused Question: System removes the relationship
+between the Quiz and Question but does not delete the original Question
+from the Question Bank.
+A4 – User does not own the Quiz: System denies the modification request.
+2.3.3 Publish Quiz
+Item Description
+Use Case ID UC14
+Use Case Name Publish Quiz
+Primary Actor User
+Secondary Actor None
+Description As a User, I want to publish my Quiz so that other users can discover and
+participate in it.
+Preconditions The User is authenticated, owns the selected Quiz, and the Quiz has been
+created successfully.
+Postconditions The Quiz visibility is changed to Public and becomes available for discovery
+and participation by other users.
+QuizApplication- SRS Document Page 18/18
+=== Page 19/22 ===
+Item Description
+Normal Sequence / 1. User opens one of their Quizzes.
+Flow 2. User selects Publish.
+3. System validates the Quiz and its questions.
+4. System asks the User to confirm the publishing action.
+5. User confirms.
+6. System changes the Quiz visibility from Private to Public.
+7. System makes the Quiz available in public browsing and search results.
+8. System displays a successful publication message.
+Alternative A1 – Quiz does not contain valid content: System rejects publication and
+Sequences / Flows informs the User which information must be completed.
+A2 – User cancels confirmation: System keeps the Quiz private and makes
+no changes.
+A3 – User does not own the Quiz: System denies the publishing request.
+A4 – Unpublish Quiz: The owner may change a published Quiz back to
+Private. The system removes it from public discovery and prevents new
+public attempts.
+2.4 Question Bank
+2.4.1 Manage Question Bank
+Item Description
+Use Case ID UC15
+Use Case Name Manage Question Bank
+Primary Actor User
+Secondary Actor None
+Description As a User, I want to manage my Question Banks so that I can organize,
+store, and reuse questions when creating quizzes.
+Preconditions The User is authenticated.
+Postconditions The User's Question Bank data and contained Questions are created or
+updated successfully.
+Normal Sequence / 1. User opens the Question Bank function.
+Flow 2. System displays the User's existing Question Banks.
+3. User selects an existing Question Bank or creates a new one.
+4. User enters or updates Question Bank information such as name,
+description, and visibility.
+5. User adds, edits, or removes Questions within the selected Question
+Bank.
+6. For each Question, User provides question content, question type, and
+related answers.
+QuizApplication- SRS Document Page 19/18
+=== Page 20/22 ===
+Item Description
+7. System validates the entered data.
+8. User saves the changes.
+9. System updates the Question Bank and displays a success message.
+Alternative A1 – Required information is missing: System displays validation messages
+Sequences / Flows and asks the User to complete the required fields.
+A2 – Invalid Question or Answer data: System rejects the invalid data and
+asks the User to correct it.
+A3 – Delete a Question Bank: System checks whether the Question Bank
+or its Questions are currently being used by existing Quizzes before
+completing the deletion.
+A4 – User attempts to modify another User's Question Bank: System
+denies the request.
+2.4.2 Reuse Question
+Item Description
+Use Case ID UC17
+Use Case Name Reuse Question
+Primary Actor User
+Secondary Actor None
+Description As a User, I want to reuse an existing Question from a Question Bank so that
+I can create quizzes more efficiently without recreating the same question.
+Preconditions The User is authenticated and is editing a Quiz. The selected Question is
+accessible to the User through their own Question Bank or a public
+Question Bank.
+Postconditions The selected Question is associated with the User's Quiz without changing
+the original Question data.
+Normal Sequence / 1. User selects Add from Question Bank while editing a Quiz.
+Flow 2. System displays or allows the User to search available Questions.
+3. User selects a Question.
+4. System displays the Question details for review.
+5. User confirms the selection.
+6. System creates the relationship between the Quiz and the selected
+Question.
+7. System places the Question in the Quiz according to the selected order.
+8. System confirms that the Question has been added successfully.
+Alternative A1 – No matching Question is found: System informs the User that no
+Sequences / Flows Question matches the search criteria.
+A2 – Question is not accessible: System denies the request if the Question
+QuizApplication- SRS Document Page 20/18
+=== Page 21/22 ===
+Item Description
+belongs to a private Question Bank owned by another User.
+A3 – Question already exists in the Quiz: System warns the User and
+prevents duplicate addition, if duplicate Questions are not allowed.
+A4 – Original Question is later removed from the source Question Bank:
+The system must preserve data consistency for Quizzes that already
+reference the Question according to the defined business rule.
+2.5 System Administration
+2.5.1 Moderate Content
+Item Description
+Use Case ID UC20
+Use Case Name Moderate Content
+Primary Actor Administrator
+Secondary Actor None
+Description As an Administrator, I want to review and moderate public quizzes and
+questions so that inappropriate or invalid content can be controlled within
+the system.
+Preconditions The Administrator is authenticated and has administrative privileges. The
+content to be reviewed exists in the system.
+Postconditions The selected content remains unchanged or an appropriate moderation
+action is applied. The system stores the updated content status.
+Normal Sequence / 1. Administrator accesses the content management function.
+Flow 2. System displays quizzes and questions available for administration.
+3. Administrator searches for or selects the content to review.
+4. System displays the content details and related information.
+5. Administrator reviews the content.
+6. Administrator selects an appropriate moderation action.
+7. System requests confirmation when necessary.
+8. Administrator confirms the action.
+9. System applies the moderation action and updates the content status.
+10. System displays a success message.
+Alternative A1 – No action is required: Administrator finishes reviewing the content
+Sequences / Flows without making changes.
+A2 – Remove or disable inappropriate content: System removes the
+content from public access or changes its status so that other users can no
+longer access it.
+A3 – Administrator cancels the action: System makes no changes to the
+content.
+QuizApplication- SRS Document Page 21/18
+=== Page 22/22 ===
+Item Description
+A4 – Content no longer exists: System informs the Administrator that the
+selected content is unavailable and returns to the management list.
+QuizApplication- SRS Document Page 22/18
